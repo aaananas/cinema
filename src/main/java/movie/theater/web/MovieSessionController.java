@@ -1,6 +1,7 @@
 package movie.theater.web;
 
 import java.time.LocalDate;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import movie.theater.api.BaseResponse;
@@ -33,20 +34,20 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public BaseResponse<Void> getAll(@RequestParam Long movieId, @RequestParam @DateTimeFormat(pattern = DATE_PATTERN) LocalDate date) {
-        // todo
-        return null;
+    public BaseResponse<List<MovieSessionDto>> getMovieSessionsByDate(@RequestParam Long movieId, @RequestParam @DateTimeFormat(pattern = DATE_PATTERN) LocalDate date) {
+        List<MovieSessionDto> data = cinemaGateway.getAvailableMovieSessionsByDate(movieId, date);
+        return BaseResponse.ok(data);
     }
 
-    @PutMapping("/{id}")
-    public BaseResponse<Void> update(@PathVariable Long id,
-                                       @RequestBody @Valid MovieSessionRequest requestDto) {
-        //todo
-        return null;
+    @PutMapping
+    public BaseResponse<MovieSessionDto> update(@RequestBody @Valid MovieSessionRequest request) {
+        MovieSessionDto dto = cinemaGateway.updateMovieSession(request);
+        return BaseResponse.ok(dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        //todo
+    public BaseResponse<Void> delete(@PathVariable Long id) {
+        cinemaGateway.deleteMovieSession(id);
+        return BaseResponse.ok(null);
     }
 }

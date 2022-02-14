@@ -1,5 +1,6 @@
 package movie.theater.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import movie.theater.api.request.CinemaHallRequest;
 import movie.theater.api.request.MovieRequest;
@@ -22,4 +23,10 @@ public interface CinemaGateway {
     CinemaHallDto getCinemaHall(Long id);
 
     MovieSessionDto createMovieSession(MovieSessionRequest request);
+
+    List<MovieSessionDto> getAvailableMovieSessionsByDate(Long movieId, LocalDate date);
+
+    MovieSessionDto updateMovieSession(MovieSessionRequest request);
+
+    void deleteMovieSession(Long id);
 }

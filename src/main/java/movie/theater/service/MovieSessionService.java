@@ -7,19 +7,12 @@ import movie.theater.model.MovieSession;
 import movie.theater.model.dto.MovieSessionDto;
 
 public interface MovieSessionService {
-//    List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
-//
-//    MovieSession add(MovieSession session);
-//
-//    MovieSession get(Long id);
-//
-//    MovieSession update(MovieSession movieSession);
 
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
     MovieSessionDto get(Long id);
 
-    MovieSessionDto update(MovieSessionDto dto);
+    MovieSessionDto update(MovieSessionRequest request);
 
     MovieSessionDto create(MovieSessionRequest request);
 
@@ -27,4 +20,5 @@ public interface MovieSessionService {
 
     void delete(Long id);
 
+    List<MovieSessionDto> getAllByMovieIdAndDate(Long movieId, LocalDate date);
 }

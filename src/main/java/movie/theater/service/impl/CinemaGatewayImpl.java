@@ -1,5 +1,6 @@
 package movie.theater.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import movie.theater.api.request.CinemaHallRequest;
@@ -54,5 +55,20 @@ public class CinemaGatewayImpl implements CinemaGateway {
     @Override
     public MovieSessionDto createMovieSession(MovieSessionRequest request) {
         return sessionService.create(request);
+    }
+
+    @Override
+    public List<MovieSessionDto> getAvailableMovieSessionsByDate(Long movieId, LocalDate date) {
+        return sessionService.getAllByMovieIdAndDate(movieId, date);
+    }
+
+    @Override
+    public MovieSessionDto updateMovieSession(MovieSessionRequest request) {
+        return sessionService.update(request);
+    }
+
+    @Override
+    public void deleteMovieSession(Long id) {
+        sessionService.delete(id);
     }
 }

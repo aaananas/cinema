@@ -20,12 +20,12 @@ public class OrderController {
     private final UserService userService;
 
     @PostMapping("/complete")
-    public BaseResponse<Void> completeOrder(Authentication auth) {
+    public BaseResponse<Void> completeOrder() {
         return null;
     }
 
     @GetMapping
-    public BaseResponse<Void> getOrderHistory(Authentication auth) {
+    public BaseResponse<Void> getOrderHistory() {
         return null;
     }
 }
